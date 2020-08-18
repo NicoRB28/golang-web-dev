@@ -6,12 +6,18 @@ import (
 	"text/template"
 )
 
+var tpl *template.Template
+
+func init() {
+	tpl = template.Must(template.ParseGlob("../fileTwo/*.gmao"))
+}
+
 func main() {
 
 	//Glob me parsea todo lo que responda al patron
-	tpl, err := template.ParseGlob("../fileTwo/*.gmao")
+	//tpl, err := template.ParseGlob("../fileTwo/*.gmao")
 
-	err = tpl.ExecuteTemplate(os.Stdout, "one.gmao", nil)
+	err := tpl.ExecuteTemplate(os.Stdout, "one.gmao", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
